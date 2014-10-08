@@ -21,9 +21,42 @@
     	$row = mysqli_fetch_array($query);
 		
 		if($count == 1){
+			//echo $count;
 			return FALSE;
 		}
 		return TRUE;
+	}
+	
+	public function SuccessUser(){
+		if(isset($_SESSION['successUser'])){
+			$successUser = $_SESSION['successUser'];
+			return $successUser;
+		}
+		return false;
+	}
+	
+	public function SuccessMessage(){
+		if(isset($_SESSION['successMessage'])){
+			$successMessage = $_SESSION['successMessage'];
+			return $successMessage;
+		}
+		return false;
+	}
+	
+	public function UnsetFailUser(){
+		$_SESSION['FailUser'] = NULL;
+	}
+	
+	public function SetFailUser($username){
+		$_SESSION['FailUser'] = $username;
+	}
+	
+	public function GetFailUser(){
+		if(isset($_SESSION['FailUser'])){
+			return $_SESSION['FailUser'];
+		}
+		return NULL;
+		
 	}
 	
 	public function Save($newUsername, $newPassword){
@@ -39,6 +72,7 @@
 	
 		mysqli_close($connection);
 		$_SESSION['successUser'] = $newUsername;
+		$_SESSION['successMessage'] = "Registrereingen lyckades!";
 	}
 	
     //Lyckad inloggning sätt sessionen till webbläsaren användaren loggade in i

@@ -42,7 +42,7 @@ require_once 'registerView.php';
     //Om användaren vill logga in
         
 			 elseif($this->view->didUserPressLogin()){
-                if($username != "" && $password != ""){
+                if($username != "" && $password != "d41d8cd98f00b204e9800998ecf8427e"){
     //Om han kryssat i "remember me"                
                   if($this->model->checkLogin($username, $password)){
                       $msg = "Successful login";
@@ -52,8 +52,9 @@ require_once 'registerView.php';
                       }
                       
                   }
-                  else{
-                      $msg ="Trouble logging in (Username/Password)";
+					else{
+						$this->model->SetFailUser($username);
+                      	$msg ="Trouble logging in (Username/Password)";
                   }
                }
               }
