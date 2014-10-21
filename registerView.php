@@ -16,7 +16,7 @@ private $registerView;
 	public function Register(){
 		
 		if($this->modelLogin->didUserPressRegister()){
-			echo "bajs";
+			
 		}
 		
 		

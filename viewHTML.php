@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 setlocale(LC_ALL, "sv_SE", "swedish");
 require_once 'modelLogin.php';
@@ -24,43 +24,43 @@ public function RegisterValidation(){
 	$DangerousUsername = FALSE;
 	
 	if (strpos($_POST['newUsername'],'<') !== false || strpos($_POST['newUsername'],'>') !== false){
-		echo "HORA";
+		
 		$DangerousUsername = TRUE;
-		echo $DangerousUsername;
+		
 	}
 	
 	$strippedUsername = filter_var($_POST['newUsername'], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW);
-	echo $strippedUsername;
+	
 	if(isset($_POST['registerButton']) == TRUE){
 		
 		if(isset($_POST['newUsername']) == FALSE || strlen($strippedUsername) < 3 && $DangerousUsername == FALSE){	
 			array_push($this->messageArray, "Användarnamnet måste ha minst 3 tecken");
 			$this->user = $strippedUsername;
 		}else{
-			echo "Användarnamn stämmer";
+			
 			$UsernameOK = TRUE;
 		}
 		
 		if(isset($_POST['newPassword']) == FALSE || strlen($_POST['newPassword']) < 6 && $DangerousUsername == FALSE){
-			echo isset($_POST['newPassword']);
-			echo $_POST['newPassword'];
+			
+			
 			array_push($this->messageArray, "Lösenordet måste ha minst 6 tecken");
 			$this->user = $strippedUsername;
 		}else{
 				if($_POST['repeatedNewPassword'] != $_POST['newPassword']){
-					echo "Lösenorden är olika!";
+					
 					$this->user = $strippedUsername;
 					array_push($this->messageArray, "Lösenordet stämmer inte");
 				}else{
-					echo "Lösenord stämmer";
+					
 					$PasswordOK = TRUE;
 				}
 		}
 		
 		if($UsernameOK == TRUE && $PasswordOK == TRUE && $DangerousUsername == FALSE){
-			echo "FITTA";
+			
 			$available = $this->model->CheckIfUsernameIsAvailable($_POST['newUsername']);
-			//echo $available;
+			
 			if($available == TRUE){
 				$this->model->Save($strippedUsername, $_POST['newPassword']);
 				header('Location: index.php');
@@ -68,7 +68,7 @@ public function RegisterValidation(){
 				
 			else{
 				$this->user = $strippedUsername;
-				//echo $DangerousUsername;
+				
 					array_push($this->messageArray, "Användarnamnet är upptaget!");
 
 				
@@ -203,16 +203,16 @@ public function echoHTML($msg){
 public function didUserPressLogin(){
 	    $username = $_POST['username'];
 	    $password = md5($_POST['password']);
-		echo "test";
+		
 		var_dump($_POST['username']);
 	    
 	    if (isset($_POST['submit'])) {
 	    
 	    		
 		if($password == "d41d8cd98f00b204e9800998ecf8427e" || $password == NULL){
-			echo "Lösenordet är tomt";
+			
 		    $this->msg = "Password is empty.";
-			//echo "helvete";
+			
 			//var_dump("1. usrValue = " . $this->usrValue);
 			//var_dump("usrValue = " . $username);
 		    $this->usrValue = $username;
@@ -223,7 +223,7 @@ public function didUserPressLogin(){
 	        	
 	        
 		if($username == "" || $username == NULL){
-			echo "Användarnamnet är tomt";
+			
 		    $this->usrValue = $username;
 		    $this->msg = "Username is missing.";
 		}
@@ -231,7 +231,7 @@ public function didUserPressLogin(){
 
 		
 		// if($username != "" && $password != ""){
-			// echo "Båda fälten är tomma";
+			
 		    // $this->usrValue = $username;
 // 		    
 		// }
@@ -302,7 +302,7 @@ public function didUserPressLogin(){
 	//Min kod
 	public function didUserPressRegister(){
 		if(isset($_GET['register'])){
-			echo "Tryckt på registrera!";
+			
 			return TRUE;
 		}
 		return FALSE;

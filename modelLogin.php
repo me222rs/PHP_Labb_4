@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 
     class modelLogin{
@@ -134,12 +134,11 @@
         }
         
         public function checkLoginCookie($username,$password){
-        	var_dump($username);
-        	var_dump($password);
+        	
             $getCookieTime = file_get_contents('cookieTime.txt');
 			$login = $this->checkLogin($username, $password);
             if ($login == TRUE && $getCookieTime > time()){
-            	//var_dump($password);
+            	
 				$_SESSION["login"] = $username;
 				$_SESSION["checkBrowser"] = $_SERVER['HTTP_USER_AGENT'];
     			return TRUE;
