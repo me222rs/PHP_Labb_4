@@ -204,7 +204,7 @@ public function didUserPressLogin(){
 	    $username = $_POST['username'];
 	    $password = md5($_POST['password']);
 		
-		var_dump($_POST['username']);
+		
 	    
 	    if (isset($_POST['submit'])) {
 	    
